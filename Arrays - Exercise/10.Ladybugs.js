@@ -1,41 +1,55 @@
 function solve(input) {
 
-    let index = 0;
-    let arrLength = Number(input[index++])
-    let positionArr = input[index++].split(" ");
-    let comandsArr = input.slice(index, input.length)
 
-    let field = new Array(arrLength).fill(0);
+    let fieldSize = Number(input[0]);
+    let field = new Array(fieldSize).fill(0);
+    let ladybugsIndexes = input[1].split(" ").map(Number);
+    let commands = input.slice(2);
 
-    for (let position of positionArr) {
-        field[position] = 1;
+    for (let i = 0; i < ladybugsIndexes.length; i++) {
+        let index = ladybugsIndexes[i];
+        if (index >= 0 && index < field.length) {
+            field[index] = 1;
+        }
     }
 
-    console.log(field);
-    for (let cmd of comandsArr) {
-        let buff = cmd.split(" ");
-        commandHandler(Number(buff[0]), buff[1], Number(buff[2]))
-        console.log(buff[0], buff[1], buff[2], field);
+    for (cmds of commands) {
+        comandHandler(cmds)
     }
 
-    function commandHandler(initPos, action, flyLength) {
-        // field[initPos] = 0;
-        if (field[0] != 1 || (initPos < 0) || (initPos >= arrLength)) return null;
-        console.log("Init Position: ", initPos);
-        let nextPosition = action == "right" ? initPos + flyLength : initPos - flyLength;
-        console.log("nextPosition", nextPosition);
-        if (nextPosition >= arrLength || arrLength < 0) return null;
-        if (field[nextPosition] == 1) {
-            console.log("Test");
-            field[initPos] = 0;
-            commandHandler(nextPosition, action, flyLength);
+    function comandHandler(comand) {
+        let buff = comand.split(" ");
+        let current = Number(buff[0]);
+        let way = String(buff[1]);
+        let steps = Number(buff[2]);
+
+        if (current >= 0 && current < field.length && field[current] == 1) {
+            field[current] = 0;
+            moveHendler(current, way, steps);
+        }
+    }
+
+    function moveHendler(current, way, steps) {
+        let newIndex = current;
+        if (way == "right") {
+            newIndex += steps;
         } else {
-            field[initPos] = 0;
-            field[nextPosition] = 1;
+            newIndex -= steps;
         }
 
+        if (field[newIndex] == 0 && newIndex >= 0 && newIndex < field.length) {
+            field[newIndex] = 1;
+            return;
+        } else {
+            moveHendler(newIndex, way, steps);
+        }
     }
 
+    console.log(field.join(" "));
 }
 
-solve([3, '0 1', '0 right 1', '2 right 1'])
+solve([3, '0 1',
+    '0 right 1',
+    '2 right 1']
+
+)
