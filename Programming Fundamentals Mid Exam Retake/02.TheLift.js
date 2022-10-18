@@ -26,11 +26,9 @@ function solve(input) {
 
     function isLifftFull(lift) {
         for (let i = 0; i < lift.length; i++) {
-
             if (!(isWagonFull(lift[i]))) {
                 return false;
             }
-
         }
         return true;
     }
