@@ -3,7 +3,7 @@ function solve(input) {
     let index = 0;
     let chestArr = input[index++].split("|");
     let brakeWord = "Yohoho!";
-
+    //Test
     while (input[index] != brakeWord) {
 
         let buff = input[index].split(" ");
