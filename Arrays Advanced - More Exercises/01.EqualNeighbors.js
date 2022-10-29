@@ -2,27 +2,41 @@ function solve(input) {
 
     let xLength = input.length;
     let yLength = input[0].length;
-
+    let foundEqualNeighborsCount = 0;
+    let foundNeigborsIndex = [];
 
     for (let x = 0; x < xLength; x++) {
         for (let y = 0; y < yLength; y++) {
-            console.log("x:", x, "y:", y, " [", input[x][y], "]");
+            if (checkRight(x, y)) foundEqualNeighborsCount++;
+            if (checkDown(x, y)) foundEqualNeighborsCount++;
         }
     }
 
-    function checkNeighbors(x, y) {
-        let xInBound = (x - 1 >= 0) && (x + 1 <= xLength);
-        console.log(xInBound);
+    function checkRight(x, y) {
+        if (neighborInRange(x, y + 1)) {
+            return input[x][y] == input[x][y + 1];
+        } else {
+            return false;
+        }
+    }
+
+    function checkDown(x, y) {
+        if (neighborInRange(x + 1, y)) {
+            return input[x][y] == input[x + 1][y]
+        }
+    }
+
+    function neighborInRange(x, y) {
+        return ((x >= 0 && x < xLength) && (y >= 0 && y < yLength));
     };
 
-    console.log(input);
-    checkNeighbors(3, 2)
+    console.log(foundEqualNeighborsCount);
 }
 
 
 
 
-solve([["2", "3", "4", "7", "0"],
-["4", "0", "5", "3", "4"],
-["2", "3", "5", "4", "2"],
-["9", "8", "7", "5", "4"]])
+solve([['test', 'yo', 'yo', 'ho'],
+['well', 'done', 'no', '6'],
+['not', 'done', 'yet', '5']]
+)
