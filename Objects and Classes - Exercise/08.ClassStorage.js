@@ -3,7 +3,7 @@ function solve() {
     class Storage {
         constructor(capacity) {
             this.capacity = capacity;
-            this.storage = new Array(capacity);
+            this.storage = new Array();
             this.totalCost = 0;
         }
 
@@ -14,7 +14,7 @@ function solve() {
         }
         getProducts() {
             let result = []
-            this.storage.forEach(item => {
+            this.storage.map(item => {
                 result.push(JSON.stringify(item))
             })
             return result.join("\n");
