@@ -1,5 +1,5 @@
 function solve(input) {
-   
+
     let index = 0;
     let shelfArr = input[index++].split("&");
 

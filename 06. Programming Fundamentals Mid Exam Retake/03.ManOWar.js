@@ -1,5 +1,5 @@
 function solve(input) {
-    let index = 0;
+
     let pirateShipStatus = input[0].split(">").map(Number);
     let warShipStatus = input[1].split(">").map(Number);
     let maxHealt = Number(input[2]);
@@ -11,18 +11,12 @@ function solve(input) {
         let buffArr = input[i].split(" ");
         let cmd = buffArr[0];
 
-
-        let sollStoppen = false;
-
         switch (cmd) {
             case "Fire":
-                //Fire {fireIndex} {damage}
-                sollStoppen = fire(Number(buffArr[1]), Number(buffArr[2]));
-                if (sollStoppen) return;
+                if (fire(Number(buffArr[1]), Number(buffArr[2]))) return;
                 break;
             case "Defend":
-                sollStoppen = defend(Number(buffArr[1]), Number(buffArr[2]), Number(buffArr[3]));
-                if (sollStoppen) return;
+                if (defend(Number(buffArr[1]), Number(buffArr[2]), Number(buffArr[3]))) return;
                 break;
             case "Repair":
                 repair(Number(buffArr[1]), Number(buffArr[2]))
