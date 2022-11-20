@@ -1,0 +1,10 @@
+01.RevealWords.js
+02.ModernTimesof#(HashTag).js
+03.ExtractFile.js
+04.StringSubstring.js
+05.ReplaceRepeatingChars.js
+06.Pascal-CaseSplitter.js
+07.CutandReverse.js
+08.HardWord.js
+09.PasswordGenerator.js
+10.LettersChangeNumbers.js
